@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<title>Consulenza Decreto Flussi - Consultiq Italy</title>
+<meta name="description" content="Prenoti la Sua consulenza sul Decreto Flussi con Consultiq Italy.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#14211f; --muted:#5b6b68; --line:#dfe6e4; --bg:#f4f7f6; --card:#ffffff; --brand:#0f6b5c; --brand-soft:#e3f1ee; --warn:#fff6e5; --warn-line:#f0c46b; --bad:#b3261e; --bad-soft:#fdecea; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:'Inter','Noto Sans Bengali',system-ui,sans-serif; font-size:16px; line-height:1.45; }
+  .wrap { max-width:560px; margin:0 auto; padding:20px 16px 48px; }
+  .brand { font-weight:700; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:6px; }
+  h1 { font-size:24px; margin:0 0 4px; line-height:1.2; }
+  .bn { font-family:'Noto Sans Bengali','Inter',sans-serif; color:var(--muted); font-size:15px; }
+  h1 .bn { display:block; font-size:18px; font-weight:500; margin-top:2px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; margin-top:16px; }
+  .notice { background:var(--warn); border:1px solid var(--warn-line); border-radius:12px; padding:14px; margin-top:14px; font-size:15px; }
+  .notice p { margin:0 0 8px; }
+  .notice p:last-child { margin:0; }
+  h2 { font-size:18px; margin:0; }
+  h2 .bn { display:block; font-size:15px; font-weight:500; }
+  .opts { display:grid; gap:10px; margin-top:14px; }
+  .opt { width:100%; text-align:left; border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:13px 14px; font:inherit; color:var(--ink); cursor:pointer; }
+  .opt:hover { border-color:var(--brand); }
+  .opt .bn { display:block; font-size:14px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .chip { border:1.5px solid var(--line); background:#fff; border-radius:999px; padding:8px 14px; font:inherit; font-size:15px; cursor:pointer; color:var(--ink); }
+  .chip.sel { border-color:var(--brand); background:var(--brand-soft); font-weight:600; }
+  .field { margin-top:16px; }
+  label { display:block; font-weight:600; font-size:15px; }
+  label .bn { display:block; font-weight:400; font-size:14px; }
+  .req { color:var(--bad); }
+  .opz { font-weight:400; color:var(--muted); font-size:13px; }
+  input[type=text], input[type=tel], input[type=email], textarea { width:100%; margin-top:6px; border:1.5px solid var(--line); border-radius:10px; padding:11px 12px; font:inherit; background:#fff; color:var(--ink); }
+  input:focus, textarea:focus { outline:none; border-color:var(--brand); }
+  textarea { min-height:80px; resize:vertical; }
+  .btn { display:block; width:100%; margin-top:20px; border:0; border-radius:12px; padding:15px; font:inherit; font-weight:700; font-size:17px; background:var(--brand); color:#fff; cursor:pointer; text-align:center; text-decoration:none; }
+  .btn .bn { display:block; color:#d7ece7; font-weight:500; font-size:14px; }
+  .btn.ghost { background:#fff; color:var(--brand); border:1.5px solid var(--brand); font-size:16px; margin-top:10px; }
+  .btn.ghost .bn { color:var(--muted); }
+  .btn.red { background:var(--bad); }
+  .btn.red .bn { color:#fbe3e1; }
+  .btn:disabled { opacity:.6; cursor:wait; }
+  .err { display:none; margin-top:12px; background:var(--bad-soft); color:var(--bad); border-radius:10px; padding:10px 12px; font-size:15px; }
+  .err.show { display:block; }
+  .step[hidden] { display:none; }
+  .ok { font-size:40px; }
+  .days { display:flex; gap:8px; overflow-x:auto; padding:2px 0 6px; margin-top:14px; }
+  .day { flex:0 0 auto; min-width:76px; border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:8px 10px; text-align:center; font:inherit; font-weight:600; cursor:pointer; color:var(--ink); }
+  .day small { display:block; font-weight:400; font-size:12px; color:var(--muted); }
+  .day.sel { border-color:var(--brand); background:var(--brand-soft); }
+  .times { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:14px; }
+  .time { border:1.5px solid var(--line); background:#fff; border-radius:10px; padding:11px 0; font:inherit; font-weight:600; cursor:pointer; color:var(--ink); }
+  .time.sel { border-color:var(--brand); background:var(--brand); color:#fff; }
+  .muted { color:var(--muted); font-size:15px; margin-top:12px; }
+  .when { background:var(--brand-soft); border-radius:10px; padding:10px 12px; font-weight:700; margin-top:12px; }
+  .mailbox { background:var(--brand-soft); border:2px solid var(--brand); border-radius:12px; padding:14px; margin-top:16px; }
+  .mailbox .why { margin:8px 0 0; font-size:15px; font-weight:600; color:var(--brand); }
+  .mailbox .why .bn { display:block; font-weight:500; color:var(--brand); }
+  .check { display:flex; gap:10px; align-items:flex-start; margin-top:16px; font-size:15px; cursor:pointer; }
+  .check input { width:22px; height:22px; margin:1px 0 0; flex:0 0 auto; accent-color:var(--brand); }
+  .check .bn { display:block; font-size:14px; }
+  .booked { font-size:20px; font-weight:700; margin-top:10px; }
+  .notice { text-align:center; }
+  .spam { background:var(--warn); border:1px solid var(--warn-line); border-radius:12px; padding:12px 14px; margin-top:16px; font-size:15px; text-align:center; }
+  .spam p { margin:0; }
+  .spam .bn { display:block; margin-top:4px; }
+  .btn.fb { background:#1877F2; display:flex; align-items:center; justify-content:center; gap:12px; text-align:left; }
+  .btn.fb svg { width:28px; height:28px; flex:0 0 auto; }
+  .btn.fb .bn { color:#dbe7ff; }
+  .center { text-align:center; }
+  button { -webkit-appearance:none; appearance:none; touch-action:manipulation; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Consultiq Italy</div>
+  <h1>Consulenza Decreto Flussi <span class="bn">Flussi পরামর্শ</span></h1>
+
+  <section class="step" id="s-chi">
+    <div class="notice">
+      <p><b>&#9888;&#65039; Consultiq NON porta persone dall'estero.</b> Aiutiamo solo i datori di lavoro in Italia a preparare i documenti e presentare la domanda Flussi.</p>
+      <p class="bn"><b>বিশেষ দ্রষ্টব্য:</b> 𝐂𝐨𝐧𝐬𝐮𝐥𝐭𝐢𝐪 অফিস থেকে 𝐅𝐥𝐮𝐬𝐬𝐢-এর মাধ্যমে ইতালির বাইরে থেকে লোক আনা হয় না। আমরা 𝐂𝐨𝐧𝐬𝐮𝐥𝐭𝐢𝐪 𝐈𝐭𝐚𝐥𝐲 থেকে শুধুমাত্র সেই সকল নিয়োগকর্তা (𝐃𝐚𝐭𝐨𝐫𝐞 𝐝𝐢 𝐋𝐚𝐯𝐨𝐫𝐨), কোম্পানি বা ব্যক্তিদের সহায়তা করে থাকি, যারা তাঁদের প্রতিষ্ঠানের প্রয়োজনে কিংবা বাসার কাজের জন্য 𝐅𝐥𝐮𝐬𝐬𝐢-তে আবেদন করতে চান। আমরা কেবলমাত্র আবেদন প্রক্রিয়ার যাবতীয় প্রয়োজনীয় ডকুমেন্ট তৈরি করতে এবং আবেদন করতে সহায়তা করে থাকি।</p>
+    </div>
+    <div class="card">
+      <h2>Lei ci contatta come: <span class="bn">আপনি কী হিসেবে যোগাযোগ করছেন?</span></h2>
+      <div class="opts">
+        <button class="opt" onclick="pickChi('Datore di lavoro', true)">Datore di lavoro (azienda o famiglia)<span class="bn">Datore di lavoro (কোম্পানি বা পরিবার)</span></button>
+        <button class="opt" onclick="pickChi('Per un familiare o amico', true)">Per un familiare o amico<span class="bn">পরিবারের সদস্য বা বন্ধুর জন্য</span></button>
+        <button class="opt" onclick="pickChi('Lavoratore', false)">Lavoratore in cerca di lavoro<span class="bn">কাজ খুঁজছি (Lavoratore)</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="s-no" hidden>
+    <div class="card center">
+      <h2>Grazie per averci contattato <span class="bn">যোগাযোগ করার জন্য ধন্যবাদ</span></h2>
+      <p>Purtroppo non offriamo questo tipo di servizio: Consultiq non cerca lavoro e non porta persone in Italia.</p>
+      <p>Ci occupiamo solo delle <b>pratiche burocratiche</b> per i datori di lavoro (documenti e domanda Flussi).</p>
+      <p class="bn">দুঃখিত, আমরা এই ধরনের সেবা দিই না। Consultiq কাজ খুঁজে দেয় না এবং ইতালিতে লোক আনে না। আমরা শুধু Datore di lavoro-দের কাগজপত্র ও Flussi আবেদনের প্রক্রিয়ায় সহায়তা করি।</p>
+      <p class="muted">Per conoscerci meglio, visiti la nostra pagina Facebook.<span class="bn" style="display:block">আমাদের সম্পর্কে আরও জানতে আমাদের Facebook পেজ দেখুন।</span></p>
+      <a class="btn fb" href="https://www.facebook.com/ConsultiqItaly/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Consultiq Italy su Facebook<span class="bn">আমাদের Facebook পেজ</span></span></a>
+      <button class="btn ghost" onclick="show('s-chi')">Indietro<span class="bn">ফিরে যান</span></button>
+    </div>
+  </section>
+
+  <section class="step" id="s-dati" hidden>
+    <div class="card">
+      <h2>I Suoi dati <span class="bn">আপনার তথ্য</span></h2>
+      <div class="field">
+        <label for="nome">Nome e cognome <span class="req">*</span><span class="bn">পুরো নাম</span></label>
+        <input id="nome" type="text" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="wa">Numero WhatsApp <span class="req">*</span><span class="bn">WhatsApp নম্বর (ইতালির নম্বর)</span></label>
+        <input id="wa" type="tel" inputmode="tel" placeholder="351 123 4567">
+      </div>
+      <div class="field">
+        <label for="tel">Altro numero <span class="opz">(facoltativo, con prefisso internazionale)</span><span class="bn">অন্য নম্বর (ঐচ্ছিক, কান্ট্রি কোডসহ)</span></label>
+        <input id="tel" type="tel" inputmode="tel" placeholder="+880 1712 345678">
+      </div>
+      <div class="field">
+        <label>Tipo di lavoro <span class="opz">(facoltativo)</span><span class="bn">কাজের ধরন (ঐচ্ছিক)</span></label>
+        <div class="chips" id="tipo">
+          <button class="chip" data-v="Stagionale">Stagionale</button>
+          <button class="chip" data-v="Non stagionale">Non stagionale</button>
+          <button class="chip" data-v="Lavoro domestico">Lavoro domestico</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="desc">Breve descrizione <span class="opz">(facoltativa)</span><span class="bn">সংক্ষেপে আপনার বিষয় (ঐচ্ছিক)</span></label>
+        <textarea id="desc"></textarea>
+      </div>
+      <div class="err" id="dati-err"></div>
+      <button class="btn" onclick="avanti()">Avanti<span class="bn">পরবর্তী</span></button>
+      <button class="btn ghost" onclick="show('s-chi')">Indietro<span class="bn">ফিরে যান</span></button>
+    </div>
+  </section>
+
+  <section class="step" id="s-orario" hidden>
+    <div class="card">
+      <h2>Scelga giorno e orario <span class="bn">দিন ও সময় বেছে নিন</span></h2>
+      <p class="muted" id="slot-msg">Caricamento… · লোড হচ্ছে…</p>
+      <div class="days" id="days"></div>
+      <div class="times" id="times"></div>
+      <button class="btn" id="avanti-orario" onclick="vaiEmail()" disabled>Avanti<span class="bn">পরবর্তী</span></button>
+      <button class="btn ghost" onclick="show('s-dati')">Indietro<span class="bn">ফিরে যান</span></button>
+    </div>
+  </section>
+
+  <section class="step" id="s-email" hidden>
+    <div class="card">
+      <h2>Ultimo passo <span class="bn">শেষ ধাপ</span></h2>
+      <div class="when" id="when"></div>
+      <div class="mailbox">
+        <label for="email">La Sua email <span class="req">*</span><span class="bn">আপনার ইমেইল</span></label>
+        <input id="email" type="email" inputmode="email" autocomplete="email" placeholder="nome@gmail.com">
+        <p class="why">📩 Riceverà su questa email la conferma dell'appuntamento e il link per annullarlo.<span class="bn">এই ইমেইলে আপনি অ্যাপয়েন্টমেন্টের কনফার্মেশন এবং বাতিল করার লিংক পাবেন।</span></p>
+      </div>
+      <label class="check"><input type="checkbox" id="privacy"><span>Acconsento al trattamento dei miei dati per essere ricontattato (GDPR).<span class="bn">যোগাযোগের জন্য আমার তথ্য ব্যবহারে সম্মতি দিচ্ছি (GDPR)।</span></span></label>
+      <div class="err" id="email-err"></div>
+      <button class="btn" id="conferma" onclick="conferma()">Conferma prenotazione<span class="bn">বুকিং নিশ্চিত করুন</span></button>
+      <button class="btn ghost" onclick="show('s-orario')">Indietro<span class="bn">ফিরে যান</span></button>
+    </div>
+  </section>
+
+  <section class="step" id="s-fine" hidden>
+    <div class="card" style="text-align:center">
+      <div class="ok">✅</div>
+      <h2>Prenotazione confermata <span class="bn">বুকিং নিশ্চিত হয়েছে</span></h2>
+      <div class="booked" id="booked"></div>
+      <p>📲 La contatteremo su WhatsApp all'orario prenotato.<br>📩 Le abbiamo inviato un'email di conferma.</p>
+      <p class="bn">বুক করা সময়ে আমরা WhatsApp-এ যোগাযোগ করব। আপনার ইমেইলে কনফার্মেশন পাঠানো হয়েছে।</p>
+      <div class="spam"><p>📥 <b>Non trova l'email?</b> Controlli anche la cartella <b>Spam</b> (Posta indesiderata).</p><p class="bn">ইমেইল খুঁজে না পেলে <b>Spam</b> (Posta indesiderata) ফোল্ডারটিও দেখুন।</p></div>
+    </div>
+  </section>
+
+  <section class="step" id="s-annulla" hidden>
+    <div class="card" style="text-align:center">
+      <h2>Annullare l'appuntamento? <span class="bn">অ্যাপয়েন্টমেন্ট বাতিল করবেন?</span></h2>
+      <div class="booked" id="ann-when"></div>
+      <div class="err" id="ann-err"></div>
+      <button class="btn red" id="ann-btn" onclick="annullaOra()">Sì, annulla<span class="bn">হ্যাঁ, বাতিল করুন</span></button>
+    </div>
+  </section>
+
+  <section class="step" id="s-annullato" hidden>
+    <div class="card" style="text-align:center">
+      <div class="ok">🗓️</div>
+      <h2 id="ann-title">Appuntamento annullato <span class="bn">অ্যাপয়েন্টমেন্ট বাতিল হয়েছে</span></h2>
+      <p>Se desidera, può prenotare un nuovo orario.</p>
+      <p class="bn">চাইলে নতুন সময় বুক করতে পারেন।</p>
+      <a class="btn" id="nuova" href="#">Nuova prenotazione<span class="bn">নতুন বুকিং</span></a>
+    </div>
+  </section>
+</div>
+
+<script>
+  var API = 'https://script.google.com/macros/s/AKfycbxHcS2LO5FrTAN-FKk22ecu0EHfLY-j8HmPnBOeyjD8SHPxnvHVjh_bAXsJ6ruRiaSB/exec';
+  var QS = new URLSearchParams(location.search);
+  var TOKEN = /^[a-f0-9-]{20,60}$/.test(QS.get('annulla') || '') ? QS.get('annulla') : '';
+  var BASE = location.origin + location.pathname;
+  function apiGet(q, ok, ko) {
+    fetch(API + '?' + q, { credentials: 'omit' })
+      .then(function (r) { return r.json(); })
+      .then(function (r) { if (r && r.err) { ko(r.err); } else { ok(r); } })
+      .catch(ko);
+  }
+  function apiPost(body, ok, ko) {
+    fetch(API, { method: 'POST', credentials: 'omit', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); })
+      .then(function (r) { if (r && r.err) { ko(r.err); } else { ok(r); } })
+      .catch(ko);
+  }
+  var state = { chi: '', tipo: '' };
+  var giorni = [], scelto = null;
+  var GBN = ['', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহস্পতি', 'শুক্র', 'শনি', 'রবি'];
+
+  function show(id) {
+    var steps = document.querySelectorAll('.step');
+    for (var i = 0; i < steps.length; i++) { steps[i].hidden = steps[i].id !== id; }
+    window.scrollTo(0, 0);
+  }
+  function pickChi(v, ok) { state.chi = v; show(ok ? 's-dati' : 's-no'); }
+
+  var tipoChips = document.querySelectorAll('#tipo .chip');
+  for (var c = 0; c < tipoChips.length; c++) {
+    tipoChips[c].addEventListener('click', function () {
+      var was = this.classList.contains('sel');
+      for (var k = 0; k < tipoChips.length; k++) { tipoChips[k].classList.remove('sel'); }
+      if (!was) { this.classList.add('sel'); state.tipo = this.getAttribute('data-v'); } else { state.tipo = ''; }
+    });
+  }
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+  function errore(box, it, bn) {
+    var e = document.getElementById(box);
+    e.innerHTML = it + '<br><span class="bn" style="color:inherit">' + bn + '</span>';
+    e.classList.add('show');
+  }
+  function soloCifre(n) {
+    var d = n.replace(/[^0-9]/g, '');
+    if (d.indexOf('0039') === 0) d = d.slice(4);
+    else if (d.indexOf('39') === 0 && d.length >= 11) d = d.slice(2);
+    return d;
+  }
+  function avanti() {
+    document.getElementById('dati-err').classList.remove('show');
+    if (!val('nome')) return errore('dati-err', 'Scriva nome e cognome.', 'পুরো নাম লিখুন।');
+    var w = soloCifre(val('wa'));
+    if (!/^3[0-9]{8,9}$/.test(w)) return errore('dati-err', 'Numero WhatsApp non valido. Esempio: 351 123 4567', 'সঠিক ইতালির WhatsApp নম্বর লিখুন। যেমন: 351 123 4567');
+    show('s-orario');
+    caricaOrari();
+  }
+
+  function caricaOrari() {
+    scelto = null;
+    document.getElementById('avanti-orario').disabled = true;
+    document.getElementById('days').innerHTML = '';
+    document.getElementById('times').innerHTML = '';
+    document.getElementById('slot-msg').textContent = 'Caricamento… · লোড হচ্ছে…';
+    apiGet('api=slots', function (res) {
+        var g = res.data;
+
+        giorni = g || [];
+        if (!giorni.length) { document.getElementById('slot-msg').textContent = 'Al momento non ci sono orari liberi. · এই মুহূর্তে কোনো সময় খালি নেই।'; return; }
+        document.getElementById('slot-msg').textContent = 'Tocchi un giorno, poi un orario. · একটি দিন, তারপর একটি সময় বেছে নিন।';
+        var box = document.getElementById('days');
+        giorni.forEach(function (gg, i) {
+          var b = document.createElement('button');
+          b.className = 'day';
+          b.innerHTML = gg.label + '<small>' + GBN[gg.dow] + '</small>';
+          b.onclick = function () { scegliGiorno(i); };
+          box.appendChild(b);
+        });
+        scegliGiorno(0);
+      }, function () { document.getElementById('slot-msg').textContent = 'Errore di caricamento. Riprovi. · লোড করা যায়নি, আবার চেষ্টা করুন।'; });
+  }
+  function scegliGiorno(i) {
+    var ds = document.querySelectorAll('.day');
+    for (var k = 0; k < ds.length; k++) { ds[k].classList.toggle('sel', k === i); }
+    scelto = null;
+    document.getElementById('avanti-orario').disabled = true;
+    var t = document.getElementById('times');
+    t.innerHTML = '';
+    giorni[i].slots.forEach(function (s) {
+      var b = document.createElement('button');
+      b.className = 'time';
+      b.textContent = s.t;
+      b.onclick = function () {
+        var all = document.querySelectorAll('.time');
+        for (var k = 0; k < all.length; k++) { all[k].classList.remove('sel'); }
+        b.classList.add('sel');
+        scelto = { ms: s.ms, label: giorni[i].full + ', ' + s.t };
+        document.getElementById('avanti-orario').disabled = false;
+      };
+      t.appendChild(b);
+    });
+  }
+  function vaiEmail() {
+    if (!scelto) return;
+    document.getElementById('when').textContent = '🗓️ ' + scelto.label;
+    document.getElementById('email-err').classList.remove('show');
+    show('s-email');
+  }
+  function conferma() {
+    document.getElementById('email-err').classList.remove('show');
+    var email = val('email');
+    if (!/^[^ @]+@[^ @]+[.][^ @]+$/.test(email)) return errore('email-err', 'Scriva un indirizzo email valido.', 'সঠিক ইমেইল লিখুন।');
+    if (!document.getElementById('privacy').checked) return errore('email-err', 'Per continuare spunti la casella del consenso.', 'এগোতে সম্মতির বাক্সে টিক দিন।');
+    var d = { chi: state.chi, nome: val('nome'), wa: soloCifre(val('wa')), tel: val('tel'), tipo: state.tipo, desc: val('desc'), email: email };
+    var b = document.getElementById('conferma');
+    b.disabled = true;
+    apiPost({ api: 'prenota', d: d, ms: scelto.ms }, function (r) {
+        b.disabled = false;
+        if (r && r.ok) {
+          document.getElementById('booked').textContent = scelto.label;
+          show('s-fine');
+        } else {
+          errore('email-err', 'Questo orario è appena stato preso. Ne scelga un altro.', 'এই সময়টি এইমাত্র বুক হয়ে গেছে। অন্য সময় বেছে নিন।');
+          setTimeout(function () { show('s-orario'); caricaOrari(); }, 2500);
+        }
+      }, function () {
+        b.disabled = false;
+        errore('email-err', 'Errore di invio. Riprovi.', 'জমা দেওয়া যায়নি। আবার চেষ্টা করুন।');
+      });
+  }
+
+  function annullaOra() {
+    var b = document.getElementById('ann-btn');
+    b.disabled = true;
+    apiPost({ api: 'annulla', token: TOKEN }, function (r) {
+        if (r && r.ok) { show('s-annullato'); }
+        else { b.disabled = false; errore('ann-err', 'Appuntamento non trovato o già annullato.', 'অ্যাপয়েন্টমেন্ট পাওয়া যায়নি বা আগেই বাতিল হয়েছে।'); }
+      }, function () { b.disabled = false; errore('ann-err', 'Errore. Riprovi.', 'সমস্যা হয়েছে, আবার চেষ্টা করুন।'); });
+  }
+
+  document.getElementById('nuova').href = BASE;
+  if (TOKEN) {
+    show('s-annulla');
+    document.getElementById('ann-when').textContent = 'Caricamento… · লোড হচ্ছে…';
+    apiGet('api=info&token=' + encodeURIComponent(TOKEN), function (res) {
+        var r = res.data;
+        if (!r) { document.getElementById('ann-when').textContent = ''; errore('ann-err', 'Appuntamento non trovato.', 'অ্যাপয়েন্টমেন্ট পাওয়া যায়নি।'); document.getElementById('ann-btn').hidden = true; }
+        else if (r.stato === 'ANNULLATO') { show('s-annullato'); }
+        else { document.getElementById('ann-when').textContent = '🗓️ ' + r.quando; }
+      }, function () { document.getElementById('ann-when').textContent = ''; errore('ann-err', 'Errore di caricamento. Riprovi.', 'লোড করা যায়নি, আবার চেষ্টা করুন।'); });
+  }
+</script>
+</body>
+</html>
